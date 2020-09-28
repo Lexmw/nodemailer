@@ -34,6 +34,20 @@ app.post('/register',function(req,res){
 app.post('/miva', async (req, res) => {
     console.log('in the miva route... ');
     const {id, bill_email, bill_fname, bill_lname, bill_addr1, bill_city, bill_state, bill_zip, bill_cntry, formatted_total, orderdate, items} = req.body;
+    // const {id, bill_email, bill_fname, bill_lname, bill_addr1, bill_city, bill_state, bill_zip, bill_cntry, formatted_total, orderdate, items} = testData;
+
+    const imgMap = {
+        '10-1000': 'graphics/00000001/10-1000- 56 gallon capacity.jpg',
+        '100EE00AA2': 'graphics/00000001/EZ Lynk Auto Agent 2.0.jpg',
+        '10-1001': 'graphics/00000001/1001-V2.png',
+        '10-1002': 'graphics/00000001/10-1002 pictures.jpg',
+        '10-1004': 'graphics/00000001/10-1004 with single infographic.jpg',
+        '10-1005': 'graphics/00000001/MAIN10-1005- 14 Single Infographic.jpg',
+        '10-1006': 'graphics/00000001/10-1006- Single Infographic 7-19-19.jpg',
+        '10-1008': 'graphics/00000001/10-1008 thumbnail.jpg',
+        '10-2000': 'graphics/00000001/Tankcomp12 (1) (1).jpg',
+        '10-2001': 'graphics/00000001/Tankcomp12 (1) (1).jpg',
+    };
     
     const formattedItems = items.map((item) => {
         const {sku, name, price} = item;
@@ -44,7 +58,7 @@ app.post('/miva', async (req, res) => {
             "productBrand": "SB Tanks",
             "productDescription": name,
             "productTitle": name,
-            "productImageUrl": "",
+            "productImageUrl": encodeURI(`http://sbtanks.com/mm5/${imgMap[sku]}`),
             "productPrice": `$${price}`,
             "productType": "",
             //this will need to be swapped for the live site
