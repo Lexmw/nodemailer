@@ -62,7 +62,7 @@ app.post('/miva', async (req, res) => {
             "productPrice": `$${price}`,
             "productType": "",
             //this will need to be swapped for the live site
-            "productUrl": `http://dev.sbtanks.com/${nameCleanedforURL}`
+            "productUrl": `http://sbtanks.com/${nameCleanedforURL}`
         }
         return eachItemObj;
     })
