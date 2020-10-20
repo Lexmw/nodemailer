@@ -121,7 +121,7 @@ app.post('/filtersBronto', async (req, res) => {
     console.log(id, bill_email, orderdate, items);
     // writing to the csv in append mode
     var writer = csvWriter();
-    writer.pipe(fs.createWriteStream('/bronto.csv', {flags: 'a'}));
+    writer.pipe(fs.createWriteStream(path.join(__dirname, '/bronto.csv'), {flags: 'a'}));
     
     // bronto csv is on the item level. each order takes up multiple rows, etc.
     const formattedItems = items.map((item) => {
