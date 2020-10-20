@@ -124,7 +124,7 @@ app.post('/filtersBronto', async (req, res) => {
     
     // bronto csv is on the item level. each order takes up multiple rows, etc.
     const formattedItems = items.map((item) => {
-        const {sku, name, price, retail, base_price, total, quantity, sku} = item;
+        const {sku, name, price, retail, base_price, total, quantity} = item;
         let nameCleanedforURL = name.replace(/[, ]+/g, "-").replace(/[.]+/g, "").trim().toLowerCase();
 
         // updated to reflect robert's template
@@ -142,7 +142,7 @@ app.post('/filtersBronto', async (req, res) => {
             "url": `http://sbtanks.com/${nameCleanedforURL}`,
             "imageurl": "",
         }
-npm
+
         writer.write(eachItemObj);
         return eachItemObj;
     });
