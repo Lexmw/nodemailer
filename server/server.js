@@ -117,8 +117,8 @@ app.post('/miva', async (req, res) => {
 });
 
 app.post('/filtersBronto', async (req, res) => {
-    const {id, bill_email, bill_fname, bill_lname, bill_addr1, bill_city, bill_state, bill_zip, bill_cntry, formatted_total, orderdate, items} = req.body;
-    
+    const {id, bill_email, orderdate, items} = req.body;
+    console.log(id, bill_email, orderdate, items);
     // writing to the csv in append mode
     var writer = csvWriter();
     writer.pipe(fs.createWriteStream('bronto.csv', {flags: 'a'}));
@@ -143,14 +143,14 @@ app.post('/filtersBronto', async (req, res) => {
             "url": `http://sbtanks.com/${nameCleanedforURL}`,
             "imageurl": "",
         }
-
+        console.log(eachItemObj);
         writer.write(eachItemObj);
         return eachItemObj;
     });
 
     // kill the csv session
     writer.end()
-
+    res.status(200).send();
 });
 
 module.exports = app;
