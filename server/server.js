@@ -31,6 +31,7 @@ const imgMap = {
 app.use(fileUpload({createParentPath: true}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
 
 // route handlers
 app.get('/',function(req,res){
